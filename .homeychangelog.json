@@ -1,4 +1,12 @@
 {
+  "1.0.2": {
+    "en": "The Homey App Store page now links to the community topic for questions and device reports.",
+    "nl": "De Homey App Store-pagina linkt nu naar het community-topic voor vragen en apparaatmeldingen."
+  },
+  "1.0.1": {
+    "en": "The device tile uses the original top-down vacuum icon again. On/off, vacuum state, and the timeline now follow the robot through cleaning, returning to the dock, and charging. Station reminders after mopping no longer raise a general alarm.",
+    "nl": "Het apparaattegel toont weer het oorspronkelijke stofzuigericoon van bovenaf. Aan/uit, stofzuigerstatus en de tijdlijn volgen de robot nu door stofzuigen, terugrijden naar het station en laden. Herinneringen van het station na het dweilen zetten geen algemeen alarm meer af."
+  },
   "1.0.0": {
     "en": "First public release: MOVAhome login, cleaning controls, status, consumables, CleanGenius, and a live floor map widget.",
     "nl": "Eerste publieke versie: inloggen met MOVAhome, schoonmaakbediening, status, verbruiksartikelen, CleanGenius en een live plattegrond-widget."

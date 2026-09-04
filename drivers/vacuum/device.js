@@ -420,7 +420,7 @@ class MovaVacuumDevice extends Homey.Device {
     const status = await this._client.getProperties(did);
     const mapped = mapDeviceStatusToHomey(status);
     this.log(
-      `MIOT state=${status.state} status=${status.status} mode=${status.cleaningMode} water=${status.waterFlow} tank=${status.waterTank} mopInstalled=${status.mopPadInstalled} → ${mapped.operationalStatus}`,
+      `MIOT state=${status.state} status=${status.status} charge=${status.chargingState} task=${status.taskStatus} error=${status.errorCode} mode=${status.cleaningMode} water=${status.waterFlow} tank=${status.waterTank} mopInstalled=${status.mopPadInstalled} → ${mapped.operationalStatus} onoff=${mapped.onoff} vac=${mapped.vacuumcleanerState} alarm=${mapped.error}`,
     );
     const previous = this.getCapabilityValue('mova_operational_status');
 
