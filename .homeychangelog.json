@@ -1,4 +1,12 @@
 {
+  "1.0.4": {
+    "en": "Start vacuuming and Start vacuum & mop were swapped on the V70 Ultra. Start vacuuming is vacuum-only; vacuum & mop starts both.",
+    "nl": "Stofzuigen starten en Stofzuigen en dweilen stonden omgekeerd op de V70 Ultra. Stofzuigen starten is alleen stofzuigen; stofzuigen en dweilen start beide."
+  },
+  "1.0.3": {
+    "en": "Fixed a bug where Start vacuuming also started mopping on combo-dock models such as the V70 Ultra. Start vacuuming is vacuum-only again; vacuum & mop is unchanged.",
+    "nl": "Bug verholpen waarbij Stofzuigen starten op combo-dock-modellen zoals de V70 Ultra ook het dweilen startte. Stofzuigen starten is weer alleen stofzuigen; stofzuigen en dweilen is ongewijzigd."
+  },
   "1.0.2": {
     "en": "The Homey App Store page now links to the community topic for questions and device reports.",
     "nl": "De Homey App Store-pagina linkt nu naar het community-topic voor vragen en apparaatmeldingen."

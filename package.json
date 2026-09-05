@@ -1,6 +1,6 @@
 {
   "name": "com.mova.vacuum",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "app.js",
   "scripts": {
     "test": "node test/mova.test.js"
