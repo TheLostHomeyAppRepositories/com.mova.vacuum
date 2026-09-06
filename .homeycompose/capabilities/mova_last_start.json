@@ -1,0 +1,8 @@
+{
+  "type": "string",
+  "title": { "en": "Last start", "nl": "Laatste start" },
+  "getable": true,
+  "setable": false,
+  "uiComponent": null,
+  "insights": false
+}

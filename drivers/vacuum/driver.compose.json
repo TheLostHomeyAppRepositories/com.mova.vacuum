@@ -9,6 +9,7 @@
   "capabilities": [
     "measure_battery",
     "mova_operational_status",
+    "mova_last_start",
     "mova_cleaning_time",
     "mova_cleaned_area",
     "measure_main_brush",
@@ -49,6 +50,10 @@
     },
     "vacuumcleaner_state": {
       "title": { "en": "Vacuum state", "nl": "Stofzuigerstatus" },
+      "uiComponent": null
+    },
+    "mova_last_start": {
+      "title": { "en": "Last start", "nl": "Laatste start" },
       "uiComponent": null
     },
     "button.reset_main_brush": {

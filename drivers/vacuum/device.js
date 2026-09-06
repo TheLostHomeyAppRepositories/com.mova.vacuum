@@ -21,6 +21,7 @@ const ACTION_CAPABILITIES = [
   'mova_cleangenius',
   'mova_cleaning_time',
   'mova_cleaned_area',
+  'mova_last_start',
   'measure_main_brush',
   'measure_side_brush',
   'measure_filter',
@@ -110,6 +111,10 @@ const CAPABILITY_ICONS = {
     title: { en: 'Vacuum state', nl: 'Stofzuigerstatus' },
     uiComponent: null,
   },
+  mova_last_start: {
+    title: { en: 'Last start', nl: 'Laatste start' },
+    uiComponent: null,
+  },
 };
 
 class MovaVacuumDevice extends Homey.Device {
@@ -164,7 +169,7 @@ class MovaVacuumDevice extends Homey.Device {
     this.registerCapabilityListener('onoff', async (value) => {
       if (value) {
         this._onoffDockLatch = false;
-        await this.startMop('vac_mop');
+        await this.startMop('vac_mop', 'onoff');
         return;
       }
       try {
@@ -178,7 +183,7 @@ class MovaVacuumDevice extends Homey.Device {
 
     this.registerCapabilityListener('vacuumcleaner_state', async (value) => {
       if (value === 'cleaning' || value === 'spot_cleaning') {
-        await this.startMop('vac_mop');
+        await this.startMop('vac_mop', 'vacuumcleaner_state');
         return;
       }
       if (value === 'docked' || value === 'charging') {
@@ -189,13 +194,13 @@ class MovaVacuumDevice extends Homey.Device {
     });
 
     this.registerCapabilityListener('mova_start_vacuum', async () => {
-      await this.startVacuum();
+      await this.startVacuum('mova_start_vacuum');
     });
     this.registerCapabilityListener('mova_start_mop', async () => {
-      await this.startMop('mop');
+      await this.startMop('mop', 'mova_start_mop');
     });
     this.registerCapabilityListener('mova_start_vac_mop', async () => {
-      await this.startMop('vac_mop');
+      await this.startMop('vac_mop', 'mova_start_vac_mop');
     });
     this.registerCapabilityListener('mova_pause', async () => {
       await this.pauseCleaning();
@@ -313,12 +318,47 @@ class MovaVacuumDevice extends Homey.Device {
     }
   }
 
-  async startVacuum() {
-    await this._runCommand('Start vacuuming', () => this._client.startVacuum(this._did()));
+  async startVacuum(source = 'startVacuum') {
+    let snap;
+    await this._runCommand('Start vacuuming', async () => {
+      snap = await this._client.startVacuum(this._did());
+    });
+    await this._recordStart(source, snap);
   }
 
-  async startMop(mode = 'mop') {
-    await this._runCommand(`Start mopping (${mode})`, () => this._client.startMop(this._did(), mode));
+  async startMop(mode = 'mop', source = 'startMop') {
+    let snap;
+    await this._runCommand(`Start mopping (${mode})`, async () => {
+      snap = await this._client.startMop(this._did(), mode);
+    });
+    await this._recordStart(source, snap);
+  }
+
+  async _recordStart(source, snap) {
+    if (!snap) {
+      return;
+    }
+    const after = snap.afterSet || {};
+    const line = [
+      `src=${source}`,
+      `kind=${snap.kind}`,
+      `wire=${snap.wire}`,
+      `model=${snap.model || '-'}`,
+      `style=${snap.style}`,
+      `raw=${after.rawCleaningMode}`,
+      `mode=${after.cleaningMode}`,
+      `mop=${after.mopPadInstalled}`,
+      `tank=${after.waterTank}`,
+      `mopSt=${after.mopInStation}`,
+      `mount=${after.autoMountMop}`,
+      `st=${after.state}`,
+      `stat=${after.status}`,
+      `homey=${this.getCapabilityValue('mova_operational_status')}`,
+    ].join(' ');
+    this.log(`START ${line}`);
+    if (this.hasCapability('mova_last_start')) {
+      await this.setCapabilityValue('mova_last_start', line.slice(0, 250));
+    }
   }
 
   async pauseCleaning() {
@@ -420,7 +460,7 @@ class MovaVacuumDevice extends Homey.Device {
     const status = await this._client.getProperties(did);
     const mapped = mapDeviceStatusToHomey(status);
     this.log(
-      `MIOT state=${status.state} status=${status.status} charge=${status.chargingState} task=${status.taskStatus} error=${status.errorCode} mode=${status.cleaningMode} water=${status.waterFlow} tank=${status.waterTank} mopInstalled=${status.mopPadInstalled} → ${mapped.operationalStatus} onoff=${mapped.onoff} vac=${mapped.vacuumcleanerState} alarm=${mapped.error}`,
+      `MIOT state=${status.state} status=${status.status} charge=${status.chargingState} task=${status.taskStatus} error=${status.errorCode} rawMode=${status.rawCleaningMode} mode=${status.cleaningMode} water=${status.waterFlow} tank=${status.waterTank} mopInstalled=${status.mopPadInstalled} mopInStation=${status.mopInStation} autoMount=${status.autoMountMop} wash=${status.selfWashBaseStatus} → ${mapped.operationalStatus} onoff=${mapped.onoff} vac=${mapped.vacuumcleanerState} alarm=${mapped.error}`,
     );
     const previous = this.getCapabilityValue('mova_operational_status');
 

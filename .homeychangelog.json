@@ -1,4 +1,8 @@
 {
+  "1.0.5": {
+    "en": "On the V70 Ultra combo dock, Start vacuuming now leaves the mop pads in the station and vacuums only. Start vacuum & mop washes and attaches the pads, then vacuums and mops.",
+    "nl": "Op het combo-dock van de V70 Ultra laat Stofzuigen starten de dweilpads in het station en stofzuigt alleen. Stofzuigen en dweilen wast en bevestigt de pads, en stofzuigt én dweilt."
+  },
   "1.0.4": {
     "en": "Start vacuuming and Start vacuum & mop were swapped on the V70 Ultra. Start vacuuming is vacuum-only; vacuum & mop starts both.",
     "nl": "Stofzuigen starten en Stofzuigen en dweilen stonden omgekeerd op de V70 Ultra. Stofzuigen starten is alleen stofzuigen; stofzuigen en dweilen start beide."
