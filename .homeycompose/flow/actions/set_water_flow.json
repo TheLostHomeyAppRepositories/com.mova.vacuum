@@ -1,0 +1,24 @@
+{
+  "title": { "en": "Set water level", "nl": "Zet waterstand" },
+  "titleFormatted": {
+    "en": "Set water level to [[level]]",
+    "nl": "Zet waterstand op [[level]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    },
+    {
+      "name": "level",
+      "type": "dropdown",
+      "title": { "en": "Water level", "nl": "Waterstand" },
+      "values": [
+        { "id": "low", "title": { "en": "Low", "nl": "Laag" } },
+        { "id": "medium", "title": { "en": "Medium", "nl": "Gemiddeld" } },
+        { "id": "high", "title": { "en": "High", "nl": "Hoog" } }
+      ]
+    }
+  ]
+}

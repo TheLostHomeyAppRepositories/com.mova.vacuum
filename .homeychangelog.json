@@ -1,4 +1,8 @@
 {
+  "1.1.0": {
+    "en": "Added support for older MOVA vacuums that run under the Dreame driver. Add them as MOVA Vacuum (Dreame model).",
+    "nl": "Ondersteuning toegevoegd voor oudere MOVA-stofzuigers die onder de Dreame-driver draaien. Voeg ze toe als MOVA Stofzuiger (Dreame-model)."
+  },
   "1.0.5": {
     "en": "On the V70 Ultra combo dock, Start vacuuming now leaves the mop pads in the station and vacuums only. Start vacuum & mop washes and attaches the pads, then vacuums and mops.",
     "nl": "Op het combo-dock van de V70 Ultra laat Stofzuigen starten de dweilpads in het station en stofzuigt alleen. Stofzuigen en dweilen wast en bevestigt de pads, en stofzuigt én dweilt."

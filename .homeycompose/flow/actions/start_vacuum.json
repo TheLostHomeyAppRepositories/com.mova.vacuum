@@ -1,0 +1,14 @@
+{
+  "title": { "en": "Start vacuuming", "nl": "Start stofzuigen" },
+  "hint": {
+    "en": "Sets vacuum-only cleaning mode, then starts the robot.",
+    "nl": "Zet de modus op alleen stofzuigen en start de robot."
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

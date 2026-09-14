@@ -1,0 +1,25 @@
+{
+  "title": { "en": "Set suction", "nl": "Zet zuigkracht" },
+  "titleFormatted": {
+    "en": "Set suction to [[level]]",
+    "nl": "Zet zuigkracht op [[level]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    },
+    {
+      "name": "level",
+      "type": "dropdown",
+      "title": { "en": "Suction", "nl": "Zuigkracht" },
+      "values": [
+        { "id": "quiet", "title": { "en": "Quiet", "nl": "Stil" } },
+        { "id": "standard", "title": { "en": "Standard", "nl": "Standaard" } },
+        { "id": "strong", "title": { "en": "Strong", "nl": "Sterk" } },
+        { "id": "turbo", "title": { "en": "Turbo", "nl": "Turbo" } }
+      ]
+    }
+  ]
+}

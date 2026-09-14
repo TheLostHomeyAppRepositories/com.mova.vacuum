@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <form class="homey-form">
+    <fieldset class="homey-form-fieldset">
+      <legend class="homey-form-legend" data-i18n="pair.legend_region">MOVAhome region</legend>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="region" data-i18n="pair.region_label">Cloud region of your MOVAhome account</label>
+        <select class="homey-form-select" id="region">
+          <option value="eu" selected data-i18n="pair.region_eu">Europe (EU)</option>
+          <option value="us" data-i18n="pair.region_us">United States (US)</option>
+          <option value="cn" data-i18n="pair.region_cn">China (CN)</option>
+          <option value="sg" data-i18n="pair.region_sg">Singapore / Asia (SG)</option>
+          <option value="ru" data-i18n="pair.region_ru">Russia (RU)</option>
+        </select>
+      </div>
+    </fieldset>
+    <fieldset class="homey-form-fieldset">
+      <legend class="homey-form-legend" data-i18n="pair.legend_account">MOVAhome account</legend>
+      <p class="homey-form-label" data-i18n="pair.password_hint"><strong>Set a password in the official MOVAhome app first.</strong> Homey only accepts email and password — not a verification code from mova.tech. If you signed up with Apple ID, open MOVAhome → account → Forgot password / Set password, then enter that email and password here.</p>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="username" data-i18n="pair.username">Email or username</label>
+        <input class="homey-form-input" type="text" id="username" placeholder="you@example.com" inputmode="email" autocomplete="username" />
+      </div>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="password" data-i18n="pair.password">Password</label>
+        <input class="homey-form-input" type="password" id="password" placeholder="Password" autocomplete="current-password" />
+      </div>
+    </fieldset>
+    <button class="homey-button-primary-full" id="submit" type="button" data-i18n="pair.submit">Log in</button>
+  </form>
+  <script>
+    function applyI18n() {
+      if (typeof Homey === 'undefined' || typeof Homey.__ !== 'function') {
+        return;
+      }
+      Homey.setTitle(Homey.__('pair.title'));
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var text = Homey.__(el.getAttribute('data-i18n'));
+        if (text && text !== el.getAttribute('data-i18n')) {
+          el.textContent = text;
+        }
+      });
+    }
+
+    applyI18n();
+
+    var btn = document.getElementById('submit');
+    btn.addEventListener('click', function () {
+      var username = document.getElementById('username').value.trim();
+      var password = document.getElementById('password').value;
+      var region = document.getElementById('region').value;
+
+      if (!username || !password) {
+        Homey.alert(Homey.__('pair.missing'));
+        return;
+      }
+
+      btn.classList.add('is-loading');
+      btn.disabled = true;
+
+      Homey.emit('login', { username: username, password: password, region: region })
+        .then(function () {
+          Homey.showView('list_devices');
+        })
+        .catch(function (err) {
+          btn.classList.remove('is-loading');
+          btn.disabled = false;
+          Homey.alert((err && err.message) || Homey.__('pair.failed'));
+        });
+    });
+  </script>
+</body>
+</html>

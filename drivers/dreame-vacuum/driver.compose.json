@@ -1,0 +1,131 @@
+{
+  "name": {
+    "en": "MOVA Vacuum (Dreame model)",
+    "nl": "MOVA Stofzuiger (Dreame-model)"
+  },
+  "class": "vacuumcleaner",
+  "platforms": ["local"],
+  "connectivity": ["cloud"],
+  "capabilities": [
+    "measure_battery",
+    "mova_operational_status",
+    "mova_last_start",
+    "mova_cleaning_time",
+    "mova_cleaned_area",
+    "measure_main_brush",
+    "measure_side_brush",
+    "measure_filter",
+    "measure_mop",
+    "alarm_consumable",
+    "alarm_generic",
+    "onoff",
+    "mova_suction_level",
+    "mova_water_flow",
+    "mova_start_vac_mop",
+    "mova_start_vacuum",
+    "mova_start_mop",
+    "mova_pause",
+    "mova_stop",
+    "mova_dock",
+    "mova_locate",
+    "vacuumcleaner_state",
+    "button.reset_main_brush",
+    "button.reset_side_brush",
+    "button.reset_filter",
+    "button.reset_mop"
+  ],
+  "capabilitiesOptions": {
+    "onoff": {
+      "title": { "en": "Clean", "nl": "Reinigen" },
+      "icon": "/assets/icons/sparkles.svg",
+      "uiQuickAction": true
+    },
+    "alarm_generic": {
+      "title": { "en": "Problem", "nl": "Probleem" }
+    },
+    "vacuumcleaner_state": {
+      "title": { "en": "Vacuum state", "nl": "Stofzuigerstatus" },
+      "uiComponent": null
+    },
+    "mova_last_start": {
+      "title": { "en": "Last start", "nl": "Laatste start" },
+      "uiComponent": null
+    },
+    "button.reset_main_brush": {
+      "maintenanceAction": true,
+      "title": { "en": "Reset main brush", "nl": "Hoofdborstel resetten" },
+      "desc": {
+        "en": "Set remaining life to 100% after replacing the main brush.",
+        "nl": "Zet de resterende levensduur op 100% na het vervangen van de hoofdborstel."
+      }
+    },
+    "button.reset_side_brush": {
+      "maintenanceAction": true,
+      "title": { "en": "Reset side brush", "nl": "Zijborstel resetten" },
+      "desc": {
+        "en": "Set remaining life to 100% after replacing the side brush.",
+        "nl": "Zet de resterende levensduur op 100% na het vervangen van de zijborstel."
+      }
+    },
+    "button.reset_filter": {
+      "maintenanceAction": true,
+      "title": { "en": "Reset filter", "nl": "Filter resetten" },
+      "desc": {
+        "en": "Set remaining life to 100% after replacing the filter.",
+        "nl": "Zet de resterende levensduur op 100% na het vervangen van het filter."
+      }
+    },
+    "button.reset_mop": {
+      "maintenanceAction": true,
+      "title": { "en": "Reset mop pad", "nl": "Dweilpad resetten" },
+      "desc": {
+        "en": "Set remaining life to 100% after replacing the mop pads.",
+        "nl": "Zet de resterende levensduur op 100% na het vervangen van de dweilpads."
+      }
+    }
+  },
+  "energy": {
+    "batteries": ["INTERNAL"]
+  },
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "login"
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "options": {
+        "singular": true
+      },
+      "navigation": { "next": "add_devices" }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "repair": [
+    {
+      "id": "login"
+    }
+  ],
+  "settings": [
+    {
+      "id": "poll_interval",
+      "type": "number",
+      "label": { "en": "Poll interval (seconds)", "nl": "Poll-interval (seconden)" },
+      "value": 30,
+      "min": 10,
+      "max": 300,
+      "hint": {
+        "en": "How often Homey reads battery and status from MOVAhome.",
+        "nl": "Hoe vaak Homey accu en status bij MOVAhome ophaalt."
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": { "en": "Start mopping", "nl": "Start dweilen" },
+  "titleFormatted": {
+    "en": "Start [[mode]]",
+    "nl": "Start [[mode]]"
+  },
+  "hint": {
+    "en": "Sets mop-only or vacuum-and-mop mode, then starts the robot.",
+    "nl": "Zet de modus op alleen dweilen of stofzuigen én dweilen, en start de robot."
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    },
+    {
+      "name": "mode",
+      "type": "dropdown",
+      "title": { "en": "Mode", "nl": "Modus" },
+      "values": [
+        { "id": "mop", "title": { "en": "Mop only", "nl": "Alleen dweilen" } },
+        { "id": "vac_mop", "title": { "en": "Vacuum and mop", "nl": "Stofzuigen en dweilen" } }
+      ]
+    }
+  ]
+}

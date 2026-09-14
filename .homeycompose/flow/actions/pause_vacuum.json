@@ -1,0 +1,10 @@
+{
+  "title": { "en": "Pause", "nl": "Pauzeren" },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": { "en": "Status is", "nl": "Status is" },
+  "titleFormatted": {
+    "en": "Status is [[status]]",
+    "nl": "Status is [[status]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    },
+    {
+      "name": "status",
+      "type": "dropdown",
+      "title": { "en": "Status", "nl": "Status" },
+      "values": [
+        { "id": "cleaning", "title": { "en": "Vacuuming", "nl": "Stofzuigen" } },
+        { "id": "mopping", "title": { "en": "Mopping", "nl": "Dweilen" } },
+        { "id": "vacuum_and_mop", "title": { "en": "Vacuum & mop", "nl": "Stofzuigen en dweilen" } },
+        { "id": "paused", "title": { "en": "Paused", "nl": "Gepauzeerd" } },
+        { "id": "returning", "title": { "en": "Returning", "nl": "Naar station" } },
+        { "id": "docked", "title": { "en": "Docked", "nl": "Aan het station" } },
+        { "id": "charging", "title": { "en": "Charging", "nl": "Aan het laden" } },
+        { "id": "stopped", "title": { "en": "Stopped", "nl": "Gestopt" } }
+      ]
+    }
+  ]
+}

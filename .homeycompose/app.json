@@ -1,6 +1,6 @@
 {
   "id": "com.mova.vacuum",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "compatibility": ">=12.3.0",
   "sdk": 3,
   "platforms": ["local"],
@@ -14,8 +14,8 @@
   },
   "category": ["appliances"],
   "tags": {
-    "en": ["MOVA", "vacuum", "robot vacuum", "V70", "MOVAhome", "mop"],
-    "nl": ["MOVA", "stofzuiger", "robotstofzuiger", "V70", "MOVAhome", "dweilen"]
+    "en": ["MOVA", "vacuum", "robot vacuum", "V70", "M1", "MOVAhome", "mop"],
+    "nl": ["MOVA", "stofzuiger", "robotstofzuiger", "V70", "M1", "MOVAhome", "dweilen"]
   },
   "brandColor": "#155E63",
   "permissions": [],

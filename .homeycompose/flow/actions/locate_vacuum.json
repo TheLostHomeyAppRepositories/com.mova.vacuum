@@ -1,0 +1,14 @@
+{
+  "title": { "en": "Locate", "nl": "Lokaliseren" },
+  "hint": {
+    "en": "Plays a sound so you can find the robot.",
+    "nl": "Laat de robot geluid maken zodat je hem kunt vinden."
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

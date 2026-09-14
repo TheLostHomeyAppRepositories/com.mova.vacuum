@@ -3,6 +3,6 @@
 const { createCloudVacuumDriver } = require('../../lib/homey/vacuum-driver');
 
 module.exports = createCloudVacuumDriver({
-  family: 'mova',
-  label: 'MOVA Vacuum',
+  family: 'dreame',
+  label: 'MOVA Vacuum (Dreame model)',
 });

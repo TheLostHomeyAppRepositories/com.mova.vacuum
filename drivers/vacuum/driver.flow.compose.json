@@ -1,98 +1,6 @@
 {
   "actions": [
     {
-      "id": "start_vacuum",
-      "title": { "en": "Start vacuuming", "nl": "Start stofzuigen" },
-      "hint": {
-        "en": "Sets vacuum-only cleaning mode, then starts the robot.",
-        "nl": "Zet de modus op alleen stofzuigen en start de robot."
-      }
-    },
-    {
-      "id": "start_mop",
-      "title": { "en": "Start mopping", "nl": "Start dweilen" },
-      "titleFormatted": {
-        "en": "Start [[mode]]",
-        "nl": "Start [[mode]]"
-      },
-      "hint": {
-        "en": "Sets mop-only or vacuum-and-mop mode, then starts the robot.",
-        "nl": "Zet de modus op alleen dweilen of stofzuigen én dweilen, en start de robot."
-      },
-      "args": [
-        {
-          "name": "mode",
-          "type": "dropdown",
-          "title": { "en": "Mode", "nl": "Modus" },
-          "values": [
-            { "id": "mop", "title": { "en": "Mop only", "nl": "Alleen dweilen" } },
-            { "id": "vac_mop", "title": { "en": "Vacuum and mop", "nl": "Stofzuigen en dweilen" } }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "pause_vacuum",
-      "title": { "en": "Pause", "nl": "Pauzeren" }
-    },
-    {
-      "id": "stop_vacuum",
-      "title": { "en": "Stop", "nl": "Stoppen" }
-    },
-    {
-      "id": "dock_vacuum",
-      "title": { "en": "Return to dock", "nl": "Naar het station" }
-    },
-    {
-      "id": "locate_vacuum",
-      "title": { "en": "Locate", "nl": "Lokaliseren" },
-      "hint": {
-        "en": "Plays a sound so you can find the robot.",
-        "nl": "Laat de robot geluid maken zodat je hem kunt vinden."
-      }
-    },
-    {
-      "id": "set_suction_level",
-      "title": { "en": "Set suction", "nl": "Zet zuigkracht" },
-      "titleFormatted": {
-        "en": "Set suction to [[level]]",
-        "nl": "Zet zuigkracht op [[level]]"
-      },
-      "args": [
-        {
-          "name": "level",
-          "type": "dropdown",
-          "title": { "en": "Suction", "nl": "Zuigkracht" },
-          "values": [
-            { "id": "quiet", "title": { "en": "Quiet", "nl": "Stil" } },
-            { "id": "standard", "title": { "en": "Standard", "nl": "Standaard" } },
-            { "id": "strong", "title": { "en": "Strong", "nl": "Sterk" } },
-            { "id": "turbo", "title": { "en": "Turbo", "nl": "Turbo" } }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "set_water_flow",
-      "title": { "en": "Set water level", "nl": "Zet waterstand" },
-      "titleFormatted": {
-        "en": "Set water level to [[level]]",
-        "nl": "Zet waterstand op [[level]]"
-      },
-      "args": [
-        {
-          "name": "level",
-          "type": "dropdown",
-          "title": { "en": "Water level", "nl": "Waterstand" },
-          "values": [
-            { "id": "low", "title": { "en": "Low", "nl": "Laag" } },
-            { "id": "medium", "title": { "en": "Medium", "nl": "Gemiddeld" } },
-            { "id": "high", "title": { "en": "High", "nl": "Hoog" } }
-          ]
-        }
-      ]
-    },
-    {
       "id": "empty_dustbin",
       "title": { "en": "Empty dustbin", "nl": "Stofbak legen" }
     },
@@ -127,31 +35,6 @@
   ],
   "conditions": [
     {
-      "id": "operational_status_is",
-      "title": { "en": "Status is", "nl": "Status is" },
-      "titleFormatted": {
-        "en": "Status is [[status]]",
-        "nl": "Status is [[status]]"
-      },
-      "args": [
-        {
-          "name": "status",
-          "type": "dropdown",
-          "title": { "en": "Status", "nl": "Status" },
-          "values": [
-            { "id": "cleaning", "title": { "en": "Vacuuming", "nl": "Stofzuigen" } },
-            { "id": "mopping", "title": { "en": "Mopping", "nl": "Dweilen" } },
-            { "id": "vacuum_and_mop", "title": { "en": "Vacuum & mop", "nl": "Stofzuigen en dweilen" } },
-            { "id": "paused", "title": { "en": "Paused", "nl": "Gepauzeerd" } },
-            { "id": "returning", "title": { "en": "Returning", "nl": "Naar station" } },
-            { "id": "docked", "title": { "en": "Docked", "nl": "Aan het station" } },
-            { "id": "charging", "title": { "en": "Charging", "nl": "Aan het laden" } },
-            { "id": "stopped", "title": { "en": "Stopped", "nl": "Gestopt" } }
-          ]
-        }
-      ]
-    },
-    {
       "id": "cleangenius_is",
       "title": { "en": "CleanGenius is", "nl": "CleanGenius is" },
       "titleFormatted": {
@@ -168,42 +51,6 @@
             { "id": "routine", "title": { "en": "Routine", "nl": "Routine" } },
             { "id": "deep", "title": { "en": "Deep", "nl": "Intensief" } }
           ]
-        }
-      ]
-    }
-  ],
-  "triggers": [
-    {
-      "id": "operational_status_changed",
-      "title": { "en": "Status changed", "nl": "Status veranderd" },
-      "titleFormatted": {
-        "en": "Status changed to [[status]]",
-        "nl": "Status veranderde naar [[status]]"
-      },
-      "args": [
-        {
-          "name": "status",
-          "type": "dropdown",
-          "title": { "en": "Status", "nl": "Status" },
-          "values": [
-            { "id": "any", "title": { "en": "Any", "nl": "Elke" } },
-            { "id": "cleaning", "title": { "en": "Vacuuming", "nl": "Stofzuigen" } },
-            { "id": "mopping", "title": { "en": "Mopping", "nl": "Dweilen" } },
-            { "id": "vacuum_and_mop", "title": { "en": "Vacuum & mop", "nl": "Stofzuigen en dweilen" } },
-            { "id": "paused", "title": { "en": "Paused", "nl": "Gepauzeerd" } },
-            { "id": "returning", "title": { "en": "Returning", "nl": "Naar station" } },
-            { "id": "docked", "title": { "en": "Docked", "nl": "Aan het station" } },
-            { "id": "charging", "title": { "en": "Charging", "nl": "Aan het laden" } },
-            { "id": "stopped", "title": { "en": "Stopped", "nl": "Gestopt" } }
-          ]
-        }
-      ],
-      "tokens": [
-        {
-          "name": "status",
-          "type": "string",
-          "title": { "en": "Status", "nl": "Status" },
-          "example": { "en": "mopping" }
         }
       ]
     }

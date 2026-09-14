@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.mova.vacuum",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "compatibility": ">=12.3.0",
   "sdk": 3,
   "platforms": [
@@ -24,6 +24,7 @@
       "vacuum",
       "robot vacuum",
       "V70",
+      "M1",
       "MOVAhome",
       "mop"
     ],
@@ -32,6 +33,7 @@
       "stofzuiger",
       "robotstofzuiger",
       "V70",
+      "M1",
       "MOVAhome",
       "dweilen"
     ]
@@ -69,7 +71,6 @@
   "flow": {
     "triggers": [
       {
-        "id": "operational_status_changed",
         "title": {
           "en": "Status changed",
           "nl": "Status veranderd"
@@ -82,7 +83,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vacuum"
+            "filter": "driver_id=vacuum|dreame-vacuum"
           },
           {
             "name": "status",
@@ -170,12 +171,12 @@
               "en": "mopping"
             }
           }
-        ]
+        ],
+        "id": "operational_status_changed"
       }
     ],
     "conditions": [
       {
-        "id": "operational_status_is",
         "title": {
           "en": "Status is",
           "nl": "Status is"
@@ -188,7 +189,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vacuum"
+            "filter": "driver_id=vacuum|dreame-vacuum"
           },
           {
             "name": "status",
@@ -256,7 +257,8 @@
               }
             ]
           }
-        ]
+        ],
+        "id": "operational_status_is"
       },
       {
         "id": "cleangenius_is",
@@ -310,99 +312,6 @@
     ],
     "actions": [
       {
-        "id": "start_vacuum",
-        "title": {
-          "en": "Start vacuuming",
-          "nl": "Start stofzuigen"
-        },
-        "hint": {
-          "en": "Sets vacuum-only cleaning mode, then starts the robot.",
-          "nl": "Zet de modus op alleen stofzuigen en start de robot."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=vacuum"
-          }
-        ]
-      },
-      {
-        "id": "start_mop",
-        "title": {
-          "en": "Start mopping",
-          "nl": "Start dweilen"
-        },
-        "titleFormatted": {
-          "en": "Start [[mode]]",
-          "nl": "Start [[mode]]"
-        },
-        "hint": {
-          "en": "Sets mop-only or vacuum-and-mop mode, then starts the robot.",
-          "nl": "Zet de modus op alleen dweilen of stofzuigen én dweilen, en start de robot."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=vacuum"
-          },
-          {
-            "name": "mode",
-            "type": "dropdown",
-            "title": {
-              "en": "Mode",
-              "nl": "Modus"
-            },
-            "values": [
-              {
-                "id": "mop",
-                "title": {
-                  "en": "Mop only",
-                  "nl": "Alleen dweilen"
-                }
-              },
-              {
-                "id": "vac_mop",
-                "title": {
-                  "en": "Vacuum and mop",
-                  "nl": "Stofzuigen en dweilen"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "pause_vacuum",
-        "title": {
-          "en": "Pause",
-          "nl": "Pauzeren"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=vacuum"
-          }
-        ]
-      },
-      {
-        "id": "stop_vacuum",
-        "title": {
-          "en": "Stop",
-          "nl": "Stoppen"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=vacuum"
-          }
-        ]
-      },
-      {
-        "id": "dock_vacuum",
         "title": {
           "en": "Return to dock",
           "nl": "Naar het station"
@@ -411,12 +320,12 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vacuum"
+            "filter": "driver_id=vacuum|dreame-vacuum"
           }
-        ]
+        ],
+        "id": "dock_vacuum"
       },
       {
-        "id": "locate_vacuum",
         "title": {
           "en": "Locate",
           "nl": "Lokaliseren"
@@ -429,12 +338,26 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vacuum"
+            "filter": "driver_id=vacuum|dreame-vacuum"
           }
-        ]
+        ],
+        "id": "locate_vacuum"
       },
       {
-        "id": "set_suction_level",
+        "title": {
+          "en": "Pause",
+          "nl": "Pauzeren"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "pause_vacuum"
+      },
+      {
         "title": {
           "en": "Set suction",
           "nl": "Zet zuigkracht"
@@ -447,7 +370,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vacuum"
+            "filter": "driver_id=vacuum|dreame-vacuum"
           },
           {
             "name": "level",
@@ -487,10 +410,10 @@
               }
             ]
           }
-        ]
+        ],
+        "id": "set_suction_level"
       },
       {
-        "id": "set_water_flow",
         "title": {
           "en": "Set water level",
           "nl": "Zet waterstand"
@@ -503,7 +426,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vacuum"
+            "filter": "driver_id=vacuum|dreame-vacuum"
           },
           {
             "name": "level",
@@ -536,7 +459,86 @@
               }
             ]
           }
-        ]
+        ],
+        "id": "set_water_flow"
+      },
+      {
+        "title": {
+          "en": "Start mopping",
+          "nl": "Start dweilen"
+        },
+        "titleFormatted": {
+          "en": "Start [[mode]]",
+          "nl": "Start [[mode]]"
+        },
+        "hint": {
+          "en": "Sets mop-only or vacuum-and-mop mode, then starts the robot.",
+          "nl": "Zet de modus op alleen dweilen of stofzuigen én dweilen, en start de robot."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "title": {
+              "en": "Mode",
+              "nl": "Modus"
+            },
+            "values": [
+              {
+                "id": "mop",
+                "title": {
+                  "en": "Mop only",
+                  "nl": "Alleen dweilen"
+                }
+              },
+              {
+                "id": "vac_mop",
+                "title": {
+                  "en": "Vacuum and mop",
+                  "nl": "Stofzuigen en dweilen"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "start_mop"
+      },
+      {
+        "title": {
+          "en": "Start vacuuming",
+          "nl": "Start stofzuigen"
+        },
+        "hint": {
+          "en": "Sets vacuum-only cleaning mode, then starts the robot.",
+          "nl": "Zet de modus op alleen stofzuigen en start de robot."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "start_vacuum"
+      },
+      {
+        "title": {
+          "en": "Stop",
+          "nl": "Stoppen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "stop_vacuum"
       },
       {
         "id": "empty_dustbin",
@@ -622,6 +624,173 @@
     ]
   },
   "drivers": [
+    {
+      "name": {
+        "en": "MOVA Vacuum (Dreame model)",
+        "nl": "MOVA Stofzuiger (Dreame-model)"
+      },
+      "class": "vacuumcleaner",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "capabilities": [
+        "measure_battery",
+        "mova_operational_status",
+        "mova_last_start",
+        "mova_cleaning_time",
+        "mova_cleaned_area",
+        "measure_main_brush",
+        "measure_side_brush",
+        "measure_filter",
+        "measure_mop",
+        "alarm_consumable",
+        "alarm_generic",
+        "onoff",
+        "mova_suction_level",
+        "mova_water_flow",
+        "mova_start_vac_mop",
+        "mova_start_vacuum",
+        "mova_start_mop",
+        "mova_pause",
+        "mova_stop",
+        "mova_dock",
+        "mova_locate",
+        "vacuumcleaner_state",
+        "button.reset_main_brush",
+        "button.reset_side_brush",
+        "button.reset_filter",
+        "button.reset_mop"
+      ],
+      "capabilitiesOptions": {
+        "onoff": {
+          "title": {
+            "en": "Clean",
+            "nl": "Reinigen"
+          },
+          "icon": "/assets/icons/sparkles.svg",
+          "uiQuickAction": true
+        },
+        "alarm_generic": {
+          "title": {
+            "en": "Problem",
+            "nl": "Probleem"
+          }
+        },
+        "vacuumcleaner_state": {
+          "title": {
+            "en": "Vacuum state",
+            "nl": "Stofzuigerstatus"
+          },
+          "uiComponent": null
+        },
+        "mova_last_start": {
+          "title": {
+            "en": "Last start",
+            "nl": "Laatste start"
+          },
+          "uiComponent": null
+        },
+        "button.reset_main_brush": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Reset main brush",
+            "nl": "Hoofdborstel resetten"
+          },
+          "desc": {
+            "en": "Set remaining life to 100% after replacing the main brush.",
+            "nl": "Zet de resterende levensduur op 100% na het vervangen van de hoofdborstel."
+          }
+        },
+        "button.reset_side_brush": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Reset side brush",
+            "nl": "Zijborstel resetten"
+          },
+          "desc": {
+            "en": "Set remaining life to 100% after replacing the side brush.",
+            "nl": "Zet de resterende levensduur op 100% na het vervangen van de zijborstel."
+          }
+        },
+        "button.reset_filter": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Reset filter",
+            "nl": "Filter resetten"
+          },
+          "desc": {
+            "en": "Set remaining life to 100% after replacing the filter.",
+            "nl": "Zet de resterende levensduur op 100% na het vervangen van het filter."
+          }
+        },
+        "button.reset_mop": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Reset mop pad",
+            "nl": "Dweilpad resetten"
+          },
+          "desc": {
+            "en": "Set remaining life to 100% after replacing the mop pads.",
+            "nl": "Zet de resterende levensduur op 100% na het vervangen van de dweilpads."
+          }
+        }
+      },
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "images": {
+        "small": "/drivers/dreame-vacuum/assets/images/small.png",
+        "large": "/drivers/dreame-vacuum/assets/images/large.png",
+        "xlarge": "/drivers/dreame-vacuum/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "settings": [
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Poll interval (seconds)",
+            "nl": "Poll-interval (seconden)"
+          },
+          "value": 30,
+          "min": 10,
+          "max": 300,
+          "hint": {
+            "en": "How often Homey reads battery and status from MOVAhome.",
+            "nl": "Hoe vaak Homey accu en status bij MOVAhome ophaalt."
+          }
+        }
+      ],
+      "id": "dreame-vacuum"
+    },
     {
       "name": {
         "en": "MOVA Vacuum",
@@ -806,31 +975,6 @@
       "id": "vacuum"
     }
   ],
-  "widgets": {
-    "map": {
-      "name": {
-        "en": "Robot map",
-        "nl": "Robotkaart"
-      },
-      "height": "100%",
-      "transparent": false,
-      "devices": {
-        "type": "app",
-        "singular": true,
-        "filter": {
-          "class": "vacuumcleaner"
-        }
-      },
-      "settings": [],
-      "api": {
-        "getMap": {
-          "method": "GET",
-          "path": "/"
-        }
-      },
-      "id": "map"
-    }
-  },
   "capabilities": {
     "alarm_consumable": {
       "type": "boolean",
