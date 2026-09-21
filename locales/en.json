@@ -21,6 +21,41 @@
     "login_missing": "Enter your MOVAhome email, password, and region. Set a password in the MOVAhome app first if you used Apple ID.",
     "not_logged_in": "Not logged in"
   },
+  "settings": {
+    "title": "Rooms",
+    "subtitle": "Refresh rooms creates a tag for every room. The tags are in MOVA Vacuum. Drop them into the Flow card, next to each other. Refresh again after you merge or rename rooms in MOVAhome.",
+    "refresh": "Refresh rooms",
+    "refreshing": "Refreshing…",
+    "empty": "No rooms yet. Let the robot finish a map in MOVAhome, then refresh.",
+    "rooms_empty": "No rooms found on the robot map. Finish a map in MOVAhome, then try again.",
+    "room_missing": "Pick a room from the list. Refresh rooms in the app settings if it is missing.",
+    "room_tags_empty": "Drop one or more room tags from MOVA Vacuum.",
+    "room_tags_only": "Only room tags from MOVA Vacuum work here. Refresh rooms and drop the tags again if one is missing.",
+    "no_device": "Add a MOVA vacuum first.",
+    "fetched": "Updated",
+    "never": "Not fetched yet",
+    "failed": "Could not refresh rooms",
+    "hidden": "hidden",
+    "room_join": " and ",
+    "room_type": {
+      "room": "Room",
+      "living_room": "Living room",
+      "primary_bedroom": "Bedroom",
+      "study": "Study",
+      "kitchen": "Kitchen",
+      "dining_room": "Dining room",
+      "bathroom": "Bathroom",
+      "balcony": "Balcony",
+      "corridor": "Hallway",
+      "utility_room": "Utility room",
+      "closet": "Closet",
+      "meeting_room": "Meeting room",
+      "office": "Office",
+      "fitness_area": "Fitness area",
+      "recreation_area": "Recreation area",
+      "secondary_bedroom": "Bedroom"
+    }
+  },
   "widget": {
     "map": {
       "loading": "Loading map…",

@@ -1,0 +1,10 @@
+{
+  "title": { "en": "Start spot cleaning", "nl": "Begin met pleksgewijs stofzuigen" },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

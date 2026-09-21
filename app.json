@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.mova.vacuum",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "compatibility": ">=12.3.0",
   "sdk": 3,
   "platforms": [
@@ -66,6 +66,14 @@
     "getMap": {
       "method": "GET",
       "path": "/map"
+    },
+    "getRooms": {
+      "method": "GET",
+      "path": "/rooms"
+    },
+    "refreshRooms": {
+      "method": "POST",
+      "path": "/rooms/refresh"
     }
   },
   "flow": {
@@ -312,6 +320,36 @@
     ],
     "actions": [
       {
+        "highlight": true,
+        "title": {
+          "en": "Start cleaning",
+          "nl": "Begin met stofzuigen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "clean"
+      },
+      {
+        "highlight": true,
+        "title": {
+          "en": "Return to dock",
+          "nl": "Terug naar laadstation"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "dock"
+      },
+      {
         "title": {
           "en": "Return to dock",
           "nl": "Naar het station"
@@ -342,6 +380,41 @@
           }
         ],
         "id": "locate_vacuum"
+      },
+      {
+        "title": {
+          "en": "Mop rooms",
+          "nl": "Kamers dweilen"
+        },
+        "titleFormatted": {
+          "en": "Mop [[rooms]]",
+          "nl": "Dweil [[rooms]]"
+        },
+        "hint": {
+          "en": "The room tags are in MOVA Vacuum. Drop them into this field, next to each other. Typed names are not accepted.",
+          "nl": "De kamertags staan in MOVA Stofzuiger. Zet ze in dit veld, tegen elkaar aan. Zelf typen werkt niet."
+        },
+        "highlight": true,
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          },
+          {
+            "type": "text",
+            "name": "rooms",
+            "title": {
+              "en": "Rooms",
+              "nl": "Kamers"
+            },
+            "placeholder": {
+              "en": "Tags in MOVA Vacuum",
+              "nl": "Tags in MOVA Stofzuiger"
+            }
+          }
+        ],
+        "id": "mop_room"
       },
       {
         "title": {
@@ -464,6 +537,20 @@
       },
       {
         "title": {
+          "en": "Start spot cleaning",
+          "nl": "Begin met pleksgewijs stofzuigen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "spot_clean"
+      },
+      {
+        "title": {
           "en": "Start mopping",
           "nl": "Start dweilen"
         },
@@ -529,6 +616,20 @@
       {
         "title": {
           "en": "Stop",
+          "nl": "Stop"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          }
+        ],
+        "id": "stop"
+      },
+      {
+        "title": {
+          "en": "Stop",
           "nl": "Stoppen"
         },
         "args": [
@@ -539,6 +640,76 @@
           }
         ],
         "id": "stop_vacuum"
+      },
+      {
+        "title": {
+          "en": "Vacuum and mop rooms",
+          "nl": "Kamers stofzuigen en dweilen"
+        },
+        "titleFormatted": {
+          "en": "Vacuum and mop [[rooms]]",
+          "nl": "Stofzuig en dweil [[rooms]]"
+        },
+        "hint": {
+          "en": "The room tags are in MOVA Vacuum. Drop them into this field, next to each other. Typed names are not accepted.",
+          "nl": "De kamertags staan in MOVA Stofzuiger. Zet ze in dit veld, tegen elkaar aan. Zelf typen werkt niet."
+        },
+        "highlight": true,
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          },
+          {
+            "type": "text",
+            "name": "rooms",
+            "title": {
+              "en": "Rooms",
+              "nl": "Kamers"
+            },
+            "placeholder": {
+              "en": "Tags in MOVA Vacuum",
+              "nl": "Tags in MOVA Stofzuiger"
+            }
+          }
+        ],
+        "id": "vacmop_room"
+      },
+      {
+        "title": {
+          "en": "Vacuum rooms",
+          "nl": "Kamers stofzuigen"
+        },
+        "titleFormatted": {
+          "en": "Vacuum [[rooms]]",
+          "nl": "Stofzuig [[rooms]]"
+        },
+        "hint": {
+          "en": "The room tags are in MOVA Vacuum. Drop them into this field, next to each other. Typed names are not accepted.",
+          "nl": "De kamertags staan in MOVA Stofzuiger. Zet ze in dit veld, tegen elkaar aan. Zelf typen werkt niet."
+        },
+        "highlight": true,
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vacuum|dreame-vacuum"
+          },
+          {
+            "type": "text",
+            "name": "rooms",
+            "title": {
+              "en": "Rooms",
+              "nl": "Kamers"
+            },
+            "placeholder": {
+              "en": "Tags in MOVA Vacuum",
+              "nl": "Tags in MOVA Stofzuiger"
+            }
+          }
+        ],
+        "id": "vacuum_room"
       },
       {
         "id": "empty_dustbin",
@@ -975,6 +1146,31 @@
       "id": "vacuum"
     }
   ],
+  "widgets": {
+    "map": {
+      "name": {
+        "en": "Robot map",
+        "nl": "Robotkaart"
+      },
+      "height": "100%",
+      "transparent": false,
+      "devices": {
+        "type": "app",
+        "singular": true,
+        "filter": {
+          "class": "vacuumcleaner"
+        }
+      },
+      "settings": [],
+      "api": {
+        "getMap": {
+          "method": "GET",
+          "path": "/"
+        }
+      },
+      "id": "map"
+    }
+  },
   "capabilities": {
     "alarm_consumable": {
       "type": "boolean",
@@ -1419,6 +1615,120 @@
           }
         }
       ]
+    },
+    "vacuumcleaner_state": {
+      "type": "enum",
+      "title": {
+        "en": "Vacuum cleaner state",
+        "de": "Staubsauger-Status",
+        "fr": "Etat de l'aspirateur",
+        "it": "Stato dell'aspirapolvere",
+        "sv": "Dammsugarstatus",
+        "no": "Støvsugerstatus",
+        "es": "Modo de la aspiradora",
+        "da": "Støvsugerstatus",
+        "ru": "Состояние пылесоса",
+        "pl": "Stan odkurzacza",
+        "ko": "청소기 상태",
+        "ar": "حالة المكنسة الكهربائية",
+        "nl": "Stofzuigerstatus"
+      },
+      "values": [
+        {
+          "id": "cleaning",
+          "title": {
+            "en": "Cleaning",
+            "nl": "Stofzuigen",
+            "de": "Staubsaugen",
+            "fr": "Aspirer",
+            "it": "Pulizia in corso",
+            "sv": "Städning",
+            "no": "Rengjøring",
+            "es": "Aspirando",
+            "da": "Støvsuger",
+            "ru": "Идет уборка",
+            "pl": "Sprzątanie",
+            "ko": "청소 중",
+            "ar": "تنظيف"
+          }
+        },
+        {
+          "id": "spot_cleaning",
+          "title": {
+            "en": "Spot cleaning",
+            "nl": "Vlek schoonmaken",
+            "de": "Spot-Reinigung",
+            "fr": "Détacher",
+            "it": "Pulizia delle macchie",
+            "sv": "Områdesstädning",
+            "no": "Områderengjøring",
+            "es": "Aspirando un punto concreto",
+            "da": "Områdestøvsugning",
+            "ru": "Идет точечная уборка",
+            "pl": "Przestań sprzątać",
+            "ko": "집중 청소 중",
+            "ar": "تنظيف موضعي"
+          }
+        },
+        {
+          "id": "docked",
+          "title": {
+            "en": "Docked",
+            "nl": "Op laadstation",
+            "de": "An Ladestation",
+            "fr": "Connecté à la base",
+            "it": "Connesso alla base",
+            "sv": "Dockad",
+            "no": "I ladestasjon",
+            "es": "En la base de carga",
+            "da": "I ladestation",
+            "ru": "На станции",
+            "pl": "W bazie",
+            "ko": "거치됨",
+            "ar": "قيد الإرساء"
+          }
+        },
+        {
+          "id": "charging",
+          "title": {
+            "en": "Charging",
+            "nl": "Aan het opladen",
+            "de": "Lädt auf",
+            "fr": "En charge",
+            "it": "In carica",
+            "sv": "Laddar",
+            "no": "Lader",
+            "es": "Cargando",
+            "da": "Lader",
+            "ru": "Заряжается",
+            "pl": "Ładowanie",
+            "ko": "충전 중",
+            "ar": "قيد الشحن"
+          }
+        },
+        {
+          "id": "stopped",
+          "title": {
+            "en": "Stopped",
+            "nl": "Gestopt",
+            "de": "Gestoppt",
+            "fr": "Arrêté",
+            "it": "Fermo",
+            "sv": "Stoppad",
+            "no": "Stanset",
+            "es": "Detenida",
+            "da": "Stoppet",
+            "ru": "Остановлен",
+            "pl": "Zatrzymano",
+            "ko": "정지",
+            "ar": "متوقف"
+          }
+        }
+      ],
+      "color": "#0091FF",
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker"
     }
   }
 }

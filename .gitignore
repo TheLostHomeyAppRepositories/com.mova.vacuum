@@ -7,5 +7,6 @@ env.json
 *.code-workspace
 .idea/
 .vscode/
+AGENTS.md
 test/
 scripts/

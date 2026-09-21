@@ -1,0 +1,10 @@
+{
+  "title": { "en": "Stop", "nl": "Stop" },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

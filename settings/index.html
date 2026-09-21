@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+    <style>
+      .device-block { margin: 0 0 8px; }
+      .rooms { list-style: none; margin: 8px 0 12px; padding: 0; }
+      .rooms li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(127, 127, 127, 0.25);
+      }
+      .room-id { opacity: 0.7; }
+      .rooms li.is-hidden .room-name,
+      .rooms li.is-hidden .room-id { opacity: 0.4; }
+      .status-line { margin: 0 0 8px; }
+      .error-line { color: #c0392b; }
+    </style>
+  </head>
+  <body>
+    <header class="homey-header">
+      <h1 class="homey-title" data-i18n="settings.title">Rooms</h1>
+      <p class="homey-subtitle" data-i18n="settings.subtitle"></p>
+    </header>
+    <div id="devices"></div>
+    <script type="text/javascript">
+      var HomeyApp = null;
+
+      function text(key, fallback) {
+        if (HomeyApp && typeof HomeyApp.__ === 'function') {
+          var value = HomeyApp.__(key);
+          if (value && value !== key) {
+            return value;
+          }
+        }
+        return fallback;
+      }
+
+      function formatWhen(fetchedAt) {
+        if (!fetchedAt) {
+          return text('settings.never', 'Not fetched yet');
+        }
+        try {
+          return text('settings.fetched', 'Updated') + ' ' + new Date(fetchedAt).toLocaleString();
+        } catch (err) {
+          return text('settings.fetched', 'Updated');
+        }
+      }
+
+      function render(result) {
+        var root = document.getElementById('devices');
+        root.innerHTML = '';
+        var devices = result && result.devices;
+        if (!devices || !devices.length) {
+          var empty = document.createElement('p');
+          empty.className = 'homey-form-label';
+          empty.textContent = text('settings.no_device', 'Add a MOVA vacuum first.');
+          root.appendChild(empty);
+          return;
+        }
+        devices.forEach(function (device) {
+          var block = document.createElement('fieldset');
+          block.className = 'homey-form-fieldset device-block';
+          var legend = document.createElement('legend');
+          legend.className = 'homey-form-legend';
+          legend.textContent = device.name || 'MOVA';
+          block.appendChild(legend);
+
+          var when = document.createElement('p');
+          when.className = 'homey-form-label status-line';
+          when.textContent = formatWhen(device.fetchedAt);
+          block.appendChild(when);
+
+          if (device.error) {
+            var error = document.createElement('p');
+            error.className = 'homey-form-label error-line';
+            error.textContent = device.error;
+            block.appendChild(error);
+          }
+
+          var list = document.createElement('ul');
+          list.className = 'rooms';
+          var rooms = device.rooms || [];
+          if (!rooms.length) {
+            var none = document.createElement('li');
+            none.textContent = text('settings.empty', 'No rooms yet.');
+            list.appendChild(none);
+          } else {
+            rooms.forEach(function (room) {
+              var item = document.createElement('li');
+              if (room.hidden) {
+                item.className = 'is-hidden';
+              }
+              var name = document.createElement('span');
+              name.className = 'room-name';
+              var label = room.name || ('ID ' + room.id);
+              if (room.hidden) {
+                label += ' (' + text('settings.hidden', 'hidden') + ')';
+              }
+              name.textContent = label;
+              var id = document.createElement('span');
+              id.className = 'room-id';
+              id.textContent = 'ID ' + room.id;
+              item.appendChild(name);
+              item.appendChild(id);
+              list.appendChild(item);
+            });
+          }
+          block.appendChild(list);
+
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'homey-button-primary-full';
+          button.textContent = text('settings.refresh', 'Refresh rooms');
+          button.addEventListener('click', function () {
+            button.disabled = true;
+            button.textContent = text('settings.refreshing', 'Refreshing…');
+            HomeyApp.api('POST', '/rooms/refresh', { deviceId: device.id }, function (err, refreshed) {
+              button.disabled = false;
+              button.textContent = text('settings.refresh', 'Refresh rooms');
+              if (err) {
+                return HomeyApp.alert(err.message || err);
+              }
+              render(refreshed);
+            });
+          });
+          block.appendChild(button);
+          root.appendChild(block);
+        });
+      }
+
+      function onHomeyReady(Homey) {
+        HomeyApp = Homey;
+        Homey.ready();
+        Homey.api('GET', '/rooms', null, function (err, result) {
+          if (err) {
+            return Homey.alert(err.message || String(err));
+          }
+          render(result);
+        });
+      }
+    </script>
+  </body>
+</html>

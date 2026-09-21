@@ -26,5 +26,9 @@
   "1.0.0": {
     "en": "First public release: MOVAhome login, cleaning controls, status, consumables, CleanGenius, and a live floor map widget.",
     "nl": "Eerste publieke versie: inloggen met MOVAhome, schoonmaakbediening, status, verbruiksartikelen, CleanGenius en een live plattegrond-widget."
+  },
+  "1.1.2": {
+    "en": "Added room fetch in the app settings and extra flows to clean rooms with tags. Refresh rooms creates a tag for every room under MOVA Vacuum. Drop those tags into the flow, next to each other.",
+    "nl": "Kamerlijst toegevoegd in de app-instellingen, en extra flows om kamers met tags schoon te maken. Kamers vernieuwen maakt voor elke kamer een tag onder MOVA Stofzuiger. Zet die tags in de flow, tegen elkaar aan."
   }
 }

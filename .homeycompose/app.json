@@ -1,9 +1,11 @@
 {
   "id": "com.mova.vacuum",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "compatibility": ">=12.3.0",
   "sdk": 3,
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "name": {
     "en": "MOVA Vacuum",
     "nl": "MOVA Stofzuiger"
@@ -12,10 +14,28 @@
     "en": "Spotless floors, without lifting a finger.",
     "nl": "Schone vloeren, zonder een vinger uit te steken."
   },
-  "category": ["appliances"],
+  "category": [
+    "appliances"
+  ],
   "tags": {
-    "en": ["MOVA", "vacuum", "robot vacuum", "V70", "M1", "MOVAhome", "mop"],
-    "nl": ["MOVA", "stofzuiger", "robotstofzuiger", "V70", "M1", "MOVAhome", "dweilen"]
+    "en": [
+      "MOVA",
+      "vacuum",
+      "robot vacuum",
+      "V70",
+      "M1",
+      "MOVAhome",
+      "mop"
+    ],
+    "nl": [
+      "MOVA",
+      "stofzuiger",
+      "robotstofzuiger",
+      "V70",
+      "M1",
+      "MOVAhome",
+      "dweilen"
+    ]
   },
   "brandColor": "#155E63",
   "permissions": [],
@@ -30,7 +50,9 @@
   },
   "contributors": {
     "developers": [
-      { "name": "Didier" }
+      {
+        "name": "Didier"
+      }
     ]
   },
   "source": "https://github.com/didiervanuffelen/Homey.Mova",
@@ -43,6 +65,14 @@
     "getMap": {
       "method": "GET",
       "path": "/map"
+    },
+    "getRooms": {
+      "method": "GET",
+      "path": "/rooms"
+    },
+    "refreshRooms": {
+      "method": "POST",
+      "path": "/rooms/refresh"
     }
   }
 }

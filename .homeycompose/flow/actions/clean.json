@@ -1,0 +1,11 @@
+{
+  "highlight": true,
+  "title": { "en": "Start cleaning", "nl": "Begin met stofzuigen" },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

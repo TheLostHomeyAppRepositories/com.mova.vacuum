@@ -1,0 +1,11 @@
+{
+  "highlight": true,
+  "title": { "en": "Return to dock", "nl": "Terug naar laadstation" },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    }
+  ]
+}

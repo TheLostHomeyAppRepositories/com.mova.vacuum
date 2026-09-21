@@ -21,6 +21,41 @@
     "login_missing": "Vul je MOVAhome-e-mail, wachtwoord en regio in. Stel eerst een wachtwoord in via de MOVAhome-app als je Apple ID gebruikte.",
     "not_logged_in": "Niet ingelogd"
   },
+  "settings": {
+    "title": "Kamers",
+    "subtitle": "Kamers vernieuwen maakt voor elke kamer een tag. De tags staan in MOVA Stofzuiger. Zet ze in de Flow-kaart, tegen elkaar aan. Vernieuw opnieuw nadat je kamers in MOVAhome hebt samengevoegd of hernoemd.",
+    "refresh": "Kamers vernieuwen",
+    "refreshing": "Vernieuwen…",
+    "empty": "Nog geen kamers. Laat de robot in MOVAhome een kaart afmaken en vernieuw daarna.",
+    "rooms_empty": "Geen kamers gevonden op de kaart van de robot. Maak een kaart af in MOVAhome en probeer opnieuw.",
+    "room_missing": "Kies een kamer uit de lijst. Vernieuw de kamers in de app-instellingen als die ontbreekt.",
+    "room_tags_empty": "Zet een of meer kamertags uit MOVA Stofzuiger in de kaart.",
+    "room_tags_only": "Alleen kamertags uit MOVA Stofzuiger werken hier. Vernieuw de kamers en zet de tags opnieuw neer als er een ontbreekt.",
+    "no_device": "Voeg eerst een MOVA-stofzuiger toe.",
+    "fetched": "Bijgewerkt",
+    "never": "Nog niet opgehaald",
+    "failed": "Kamers vernieuwen mislukt",
+    "hidden": "verborgen",
+    "room_join": " en ",
+    "room_type": {
+      "room": "Kamer",
+      "living_room": "Woonkamer",
+      "primary_bedroom": "Eerste slaapkamer",
+      "study": "Werkkamer",
+      "kitchen": "Keuken",
+      "dining_room": "Eetkamer",
+      "bathroom": "Badkamer",
+      "balcony": "Balkon",
+      "corridor": "Gang",
+      "utility_room": "Voorraadkamer",
+      "closet": "Kast",
+      "meeting_room": "Zitkamer",
+      "office": "Kantoor",
+      "fitness_area": "Fitnessruimte",
+      "recreation_area": "Hobbyruimte",
+      "secondary_bedroom": "Tweede slaapkamer"
+    }
+  },
   "widget": {
     "map": {
       "loading": "Kaart laden…",

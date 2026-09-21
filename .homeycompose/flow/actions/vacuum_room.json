@@ -1,0 +1,22 @@
+{
+  "title": { "en": "Vacuum rooms", "nl": "Kamers stofzuigen" },
+  "titleFormatted": { "en": "Vacuum [[rooms]]", "nl": "Stofzuig [[rooms]]" },
+  "hint": {
+    "en": "The room tags are in MOVA Vacuum. Drop them into this field, next to each other. Typed names are not accepted.",
+    "nl": "De kamertags staan in MOVA Stofzuiger. Zet ze in dit veld, tegen elkaar aan. Zelf typen werkt niet."
+  },
+  "highlight": true,
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vacuum|dreame-vacuum"
+    },
+    {
+      "type": "text",
+      "name": "rooms",
+      "title": { "en": "Rooms", "nl": "Kamers" },
+      "placeholder": { "en": "Tags in MOVA Vacuum", "nl": "Tags in MOVA Stofzuiger" }
+    }
+  ]
+}
